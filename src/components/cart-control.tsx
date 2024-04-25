@@ -10,7 +10,13 @@ const CartCount = styled.span`
   font-size: 10px;
   background-color: var(--delete-color);
   color: white;
-  margin-left: -10px;
+  position: absolute;
+  top: 50%;
+  /* transform: translateY(-50%); */
+  right: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Container = styled.div`
@@ -18,12 +24,12 @@ const Container = styled.div`
 `;
 
 export function CartControl() {
-  const { value } = useLocalStorage("cart-items", []);
+  const { value } = useLocalStorage("cart-items", [0, 0]);
 
   return (
     <Container>
       <CartIcon />
-      {value.length && <CartCount>{value.length}</CartCount>}
+      {value.length > 0 && <CartCount>{value.length}</CartCount>}
     </Container>
   );
 }
